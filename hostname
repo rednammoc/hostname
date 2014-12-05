@@ -1,0 +1,10 @@
+#!/bin/bash
+# @name: hostname
+# @description: returns qualified hostname (internet-access required).
+# @date: 2014/12/05
+# @author: rednammoc
+#
+# Retrieving public ip-address.
+ip=$(curl "http://www.networksecuritytoolkit.org/nst/cgi-bin/ip.cgi" 2> /dev/null)
+host=$(host "${ip}" | awk '{print $5}')         # parsing qualified hostname.
+echo ${host%?}                                  # removes trailing '.'.
